@@ -1,0 +1,10 @@
+# Ignorar build/gerados do LiteX
+build/
+__pycache__/
+*.bin
+*.elf
+*.map
+*.o
+*.vcd
+*~
+
