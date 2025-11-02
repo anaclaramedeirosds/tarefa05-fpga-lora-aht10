@@ -1,0 +1,41 @@
+# Build artefacts
+/build/
+dist/
+output/
+*.bit
+*.bin
+*.hex
+*.svf
+*.mcs
+*.rpt
+/*.log
+*.jou
+
+# Compiled objects
+*.o
+*.elf
+*.map
+*.sym
+*.lst
+*.svd
+
+# Tool-specific caches
+/.cache/
+*.cache
+*.settings/
+.ipynb_checkpoints/
+
+# Editor/OS files
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Python env (se houver scripts)
+venv/
+.env
+__pycache__/
+
+# Misc
+*.bak
