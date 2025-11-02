@@ -1,4 +1,4 @@
-# 📡 Transmissão de Dados via LoRa — FPGA + BitDogLab
+# Transmissão de Dados via LoRa — FPGA + BitDogLab
 
 Projeto desenvolvido como parte da **Residência Embarcatech — Unidade 5**, com o objetivo de realizar **transmissão de dados via LoRa** utilizando um **FPGA Colorlight i9** e o microcontrolador **BitDogLab (Raspberry Pi Pico)**.
 
@@ -8,17 +8,17 @@ O sistema é dividido em dois componentes principais:
 
 ---
 
-## 🧠 Estrutura do Projeto
-´´´bash
+## Estrutura do Projeto
+```bash
 .
 ├── hardware/ → Projeto FPGA (LiteX + OSS CAD Suite)
 ├── software/ → Projeto Raspberry Pi Pico (BitDogLab)
 └── README.md
-´´´
+```
 
 ---
 
-## ⚙️ Ambiente de Desenvolvimento
+## Ambiente de Desenvolvimento
 
 ### Requisitos
 - **OSS CAD Suite** (para sintetizar e gravar o FPGA)
@@ -33,13 +33,13 @@ O sistema é dividido em dois componentes principais:
 
 Deve estar dentro da pasta `hardware`:
 
-´´´bash
+```bash
 cd hardware
-´´´
+```
 1️⃣ Ativar o ambiente do OSS CAD Suite
-´´´bash
+```bash
 source [SEU-PATH]/oss-cad-suite/environment
-´´´
+```
 Substitua [SEU-PATH] pelo caminho onde o OSS CAD Suite está instalado.
 
 2️⃣ Compilar o código em Python e subir
