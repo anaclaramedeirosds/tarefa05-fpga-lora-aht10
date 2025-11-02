@@ -2,9 +2,88 @@
 
 Projeto desenvolvido com o objetivo de realizar **transmissão de dados via LoRa** utilizando um **FPGA Colorlight i9** e o microcontrolador **BitDogLab (Raspberry Pi Pico W)**.
 
-O sistema é dividido em dois componentes principais:
-- **FPGA (hardware/):** responsável pela coleta, processamento e transmissão dos dados via LoRa.
-- **BitDogLab (software/):** responsável pela recepção e visualização dos dados transmitidos pelo FPGA.
+O projeto integra:
+- Leitura de dados do **sensor AHT10** (temperatura e umidade);
+- Comunicação **LoRa** entre FPGA e microcontrolador;
+- Processamento e exibição dos dados no terminal serial.
+
+---
+
+## Descrição Geral
+
+O sistema é dividido em duas partes principais:
+
+- **FPGA (hardware/):**
+  - Responsável pela interface LoRa e controle da transmissão;
+  - Implementado em **LiteX** e **Python**, com integração em **C** para o firmware embarcado no softcore.
+
+- **BitDogLab (software/):**
+  - Atua como estação receptora LoRa;
+  - Processa e exibe os dados recebidos do FPGA;
+  - Desenvolvido em **C** com o SDK do Raspberry Pi Pico.
+
+---
+
+## Diagrama de Blocos do Sistema
+```bash
+    ┌──────────────────────────────┐
+    │        Sensor AHT10          │
+    │   (Temperatura / Umidade)    │
+    └──────────────┬───────────────┘
+                   │ I²C
+                   ▼
+    ┌──────────────────────────────┐
+    │            FPGA              │
+    │   (Colorlight i9 - LiteX)    │
+    │ ┌──────────────────────────┐ │
+    │ │   Controlador LoRa TX    │ │
+    │ │   Módulo SPI / UART      │ │
+    │ │   Softcore (firmware C)  │ │
+    │ └──────────────────────────┘ │
+    └──────────────┬───────────────┘
+                   │ LoRa (SPI)
+                   ▼
+    ┌──────────────────────────────┐
+    │        BitDogLab RX          │
+    │   (Raspberry Pi Pico SDK)    │
+    │  - Recepção via LoRa         │
+    │  - Exibição no terminal      │
+    └──────────────────────────────┘
+
+```
+
+---
+
+## ⚙️ Especificações Técnicas
+
+### 🔹 Frequências do sistema
+```bash
+| Sinal / Clock        | Frequência | Descrição                                |
+|----------------------|------------|------------------------------------------|
+| Clock principal FPGA | 25 MHz     | Clock do sistema gerado pelo oscilador   |
+| Clock CPU (LiteX)    | 50 MHz     | Clock do softcore do firmware C          |
+| Clock LoRa SPI       | 8 MHz      | Clock de comunicação SPI com módulo LoRa |
+| Clock UART debug     | 115200 bps | Comunicação serial com terminal        |
+```
+
+---
+
+### 🔹 Pinos Utilizados (Colorlight i9)
+```bash
+| Sinal       | FPGA Pin | Descrição                      |
+|--------------|-----------|--------------------------------|
+| **SCL (AHT10)** | E12 | Clock do barramento I²C          |
+| **SDA (AHT10)** | D12 | Dados do barramento I²C          |
+| **LoRa_MOSI**   | B6  | Dados SPI para o módulo LoRa     |
+| **LoRa_MISO**   | B7  | Dados SPI recebidos do módulo    |
+| **LoRa_SCK**    | C7  | Clock SPI                        |
+| **LoRa_CS**     | A8  | Chip Select do módulo LoRa       |
+| **UART_TX**     | D9  | Transmissão serial (debug/logs)  |
+| **UART_RX**     | C9  | Recepção serial (debug/logs)     |
+| **GND**         | —   | Referência comum                 |
+| **VCC (3.3V)**  | —   | Alimentação dos periféricos      |
+```
+*(Os pinos podem variar conforme a revisão da placa. Ajuste no arquivo de constraints conforme necessário.)*
 
 ---
 
