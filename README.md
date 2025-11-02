@@ -70,7 +70,7 @@ O sistema é dividido em duas partes principais:
 
 ### 🔹 Pinos Utilizados (Colorlight i9)
 ```bash
-| Sinal       | FPGA Pin | Descrição                       |
+| Sinal        | FPGA Pin  | Descrição                     |
 |--------------|-----------|-------------------------------|
 | **SCL (AHT10)** | E12 | Clock do barramento I²C          |
 | **SDA (AHT10)** | D12 | Dados do barramento I²C          |
@@ -83,7 +83,6 @@ O sistema é dividido em duas partes principais:
 | **GND**         | —   | Referência comum                 |
 | **VCC (3.3V)**  | —   | Alimentação dos periféricos      |
 ```
-*(Os pinos podem variar conforme a revisão da placa. Ajuste no arquivo de constraints conforme necessário.)*
 
 ---
 
