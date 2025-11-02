@@ -60,8 +60,6 @@ O sistema é dividido em duas partes principais:
 ```bash
 | **Sinal / Interface** | **Nome no código** | **Pino FPGA (ECP5)** | **IOStandard** | **Descrição / Função** |
 |------------------------|--------------------|-----------------------|----------------|-------------------------|
-| **Clock 25 MHz**       | `clk25`            | — (definido na plataforma LiteX) | LVCMOS33 | Clock principal do sistema |
-| **Reset**              | `cpu_reset_n`      | — (definido na plataforma LiteX) | LVCMOS33 | Reset externo ativo em nível baixo |
 | **SPI CLK**            | `spi.clk`          | `G20` | LVCMOS33 | Clock SPI para o módulo LoRa (RFM9x) |
 | **SPI MOSI**           | `spi.mosi`         | `L18` | LVCMOS33 | Dados enviados FPGA → LoRa |
 | **SPI MISO**           | `spi.miso`         | `M18` | LVCMOS33 | Dados recebidos LoRa → FPGA |
