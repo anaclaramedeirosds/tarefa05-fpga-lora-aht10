@@ -56,17 +56,23 @@ O sistema é dividido em duas partes principais:
 
 ## ⚙️ Especificações Técnicas
 
-### 🔹 Frequências do sistema
+## 🔹 Pinos Utilizados — FPGA Colorlight i9/i5 (Tarefa05)
 ```bash
-| Sinal / Domínio | Frequência | Descrição |
-|-----------------|-------------|------------|
-| `clk25` (entrada) | 25 MHz | Clock base do sistema |
-| `cd_sys` | 60 MHz | Clock principal do SoC (configurado em Python) |
-| `sdram` | 60 MHz (1:1) ou 120 MHz (1:2) | Clock da SDRAM |
-| `spi_clk_freq` | 1 MHz | Clock do barramento SPI para o módulo LoRa |
-| `uart` | 115200 bps | Comunicação serial UART |
-| `video`| 40–200 MHz | Clocks HDMI gerados (se habilitado) |
-
+| **Sinal / Interface** | **Nome no código** | **Pino FPGA (ECP5)** | **IOStandard** | **Descrição / Função** |
+|------------------------|--------------------|-----------------------|----------------|-------------------------|
+| **Clock 25 MHz**       | `clk25`            | — (definido na plataforma LiteX) | LVCMOS33 | Clock principal do sistema |
+| **Reset**              | `cpu_reset_n`      | — (definido na plataforma LiteX) | LVCMOS33 | Reset externo ativo em nível baixo |
+| **SPI CLK**            | `spi.clk`          | `G20` | LVCMOS33 | Clock SPI para o módulo LoRa (RFM9x) |
+| **SPI MOSI**           | `spi.mosi`         | `L18` | LVCMOS33 | Dados enviados FPGA → LoRa |
+| **SPI MISO**           | `spi.miso`         | `M18` | LVCMOS33 | Dados recebidos LoRa → FPGA |
+| **SPI CS**             | `spi.cs_n`         | `N17` | LVCMOS33 | Chip Select do módulo LoRa (ativo em nível baixo) |
+| **LoRa Reset**         | `lora_reset`       | `L20` | LVCMOS33 | Reset do módulo LoRa |
+| **I²C SCL**            | `i2c.scl`          | `U17` | LVCMOS33 | Clock do barramento I²C (sensor AHT10) |
+| **I²C SDA**            | `i2c.sda`          | `U18` | LVCMOS33 | Dados do barramento I²C (sensor AHT10) |
+| **SDRAM**              | `sdram`            | múltiplos pinos (ver arquivo `platform/colorlight_i5.py`) | SSTL / LVCMOS | Memória SDR externa |
+| **LEDs de usuário**    | `user_led_n`       | definidos na plataforma | LVCMOS33 | LEDs de debug (LedChaser) |
+| **SPI Flash**          | `spiflash`         | definidos na plataforma | LVCMOS33 | Memória Flash do sistema |
+| **UART TX/RX**         | `serial`           | definidos na plataforma | LVCMOS33 | Comunicação serial do SoC (USB/UART) |
 ```
 
 ---
