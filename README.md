@@ -40,7 +40,7 @@ cd hardware
 ```bash
 source [SEU-PATH]/oss-cad-suite/environment
 ```
-### Substitua [SEU-PATH] pelo caminho onde o OSS CAD Suite está instalado.
+Substitua [SEU-PATH] pelo caminho onde o OSS CAD Suite está instalado.
 
 2️⃣ Compilar o código em Python e subir
 ```bash
@@ -60,4 +60,21 @@ sudo [SEU-PATH]/oss-cad-suite/bin/openFPGALoader -b colorlight-i5 build/colorlig
 ```bash
 litex_term /dev/ttyACM0 --kernel firmware/firmware.bin
 ```
-### *Lembre-se: após entrar no terminal serial pressione Enter até que apareça litex>, digite reboot e pressione Enter novamente.
+*Lembre-se: após entrar no terminal serial pressione Enter até que apareça litex>, digite reboot e pressione Enter novamente.
+
+---
+
+## Software (BitDogLab)
+
+Primeiro, abra o diretório do projeto no VS Code.
+
+1️⃣ Gerar arquivos de build
+```bash
+cmake -G Ninja -S . -B build
+cmake --build build
+```
+2️⃣ Gravar o firmware
+Após a compilação, use a própria interface da extensão Raspberry Pi Pico para:
+- Conectar a BitDogLab via USB (bootsel);
+- Clicar em “Run Project” ou “Upload”.
+
