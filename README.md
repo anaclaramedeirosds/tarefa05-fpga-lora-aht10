@@ -29,7 +29,7 @@ O sistema é dividido em dois componentes principais:
 
 ---
 
-## 🧩 Hardware (FPGA)
+## Hardware (FPGA)
 
 Deve estar dentro da pasta `hardware`:
 
@@ -40,7 +40,7 @@ cd hardware
 ```bash
 source [SEU-PATH]/oss-cad-suite/environment
 ```
-Substitua [SEU-PATH] pelo caminho onde o OSS CAD Suite está instalado.
+### Substitua [SEU-PATH] pelo caminho onde o OSS CAD Suite está instalado.
 
 2️⃣ Compilar o código em Python e subir
 ```bash
@@ -60,4 +60,4 @@ sudo [SEU-PATH]/oss-cad-suite/bin/openFPGALoader -b colorlight-i5 build/colorlig
 ```bash
 litex_term /dev/ttyACM0 --kernel firmware/firmware.bin
 ```
-*Lembre-se: após entrar no terminal serial pressione Enter até que apareça litex>, digite reboot e e pressione Enter novamente.
+### *Lembre-se: após entrar no terminal serial pressione Enter até que apareça litex>, digite reboot e pressione Enter novamente.
