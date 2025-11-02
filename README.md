@@ -63,15 +63,15 @@ O sistema é dividido em duas partes principais:
 | Clock principal FPGA | 25 MHz     | Clock do sistema gerado pelo oscilador   |
 | Clock CPU (LiteX)    | 50 MHz     | Clock do softcore do firmware C          |
 | Clock LoRa SPI       | 8 MHz      | Clock de comunicação SPI com módulo LoRa |
-| Clock UART debug     | 115200 bps | Comunicação serial com terminal        |
+| Clock UART debug     | 115200 bps | Comunicação serial com terminal          |
 ```
 
 ---
 
 ### 🔹 Pinos Utilizados (Colorlight i9)
 ```bash
-| Sinal       | FPGA Pin | Descrição                      |
-|--------------|-----------|--------------------------------|
+| Sinal       | FPGA Pin | Descrição                       |
+|--------------|-----------|-------------------------------|
 | **SCL (AHT10)** | E12 | Clock do barramento I²C          |
 | **SDA (AHT10)** | D12 | Dados do barramento I²C          |
 | **LoRa_MOSI**   | B6  | Dados SPI para o módulo LoRa     |
