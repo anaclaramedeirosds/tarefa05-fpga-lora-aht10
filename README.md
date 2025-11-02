@@ -1,6 +1,6 @@
 # Transmissão de Dados via LoRa — FPGA + BitDogLab
 
-Projeto desenvolvido como parte da **Residência Embarcatech — Unidade 5**, com o objetivo de realizar **transmissão de dados via LoRa** utilizando um **FPGA Colorlight i9** e o microcontrolador **BitDogLab (Raspberry Pi Pico)**.
+Projeto desenvolvido com o objetivo de realizar **transmissão de dados via LoRa** utilizando um **FPGA Colorlight i9** e o microcontrolador **BitDogLab (Raspberry Pi Pico W)**.
 
 O sistema é dividido em dois componentes principais:
 - **FPGA (hardware/):** responsável pela coleta, processamento e transmissão dos dados via LoRa.
@@ -11,8 +11,8 @@ O sistema é dividido em dois componentes principais:
 ## Estrutura do Projeto
 ```bash
 .
-├── hardware/ → Projeto FPGA (LiteX + OSS CAD Suite)
-├── software/ → Projeto Raspberry Pi Pico (BitDogLab)
+├── hardware/ → Projeto FPGA
+├── software/ → Projeto BitDogLab
 └── README.md
 ```
 
@@ -21,11 +21,11 @@ O sistema é dividido em dois componentes principais:
 ## Ambiente de Desenvolvimento
 
 ### Requisitos
-- **OSS CAD Suite** (para sintetizar e gravar o FPGA)
-- **LiteX** (framework em Python para geração do design)
-- **openFPGALoader** (para carregar o bitstream no FPGA)
-- **SDK do Raspberry Pi Pico** (para compilar o código C)
-- **Extensão Raspberry Pi Pico** no VS Code
+- **OSS CAD Suite** (para sintetizar e gravar o FPGA);
+- **LiteX** (framework em Python para geração do design);
+- **openFPGALoader** (para carregar o bitstream no FPGA);
+- **SDK do Raspberry Pi Pico** (para compilar o código C);
+- **Extensão Raspberry Pi Pico** no VS Code.
 
 ---
 
@@ -76,5 +76,5 @@ cmake --build build
 2️⃣ Gravar o firmware
 Após a compilação, use a própria interface da extensão Raspberry Pi Pico para:
 - Conectar a BitDogLab via USB (bootsel);
-- Clicar em “Run Project” ou “Upload”.
+- Clicar em “Run Project”.
 
