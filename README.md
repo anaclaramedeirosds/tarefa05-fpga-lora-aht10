@@ -25,30 +25,31 @@ O sistema é dividido em duas partes principais:
 ---
 
 ## Diagrama de Blocos do Sistema
-```bash
-    ┌──────────────────────────────┐
-    │        Sensor AHT10          │
-    │   (Temperatura / Umidade)    │
-    └──────────────┬───────────────┘
-                   │ I²C
-                   ▼
-    ┌──────────────────────────────┐
-    │            FPGA              │
-    │   (Colorlight i9 - LiteX)    │
-    │ ┌──────────────────────────┐ │
-    │ │   Controlador LoRa TX    │ │
-    │ │   Módulo SPI / UART      │ │
-    │ │   Softcore (firmware C)  │ │
-    │ └──────────────────────────┘ │
-    └──────────────┬───────────────┘
-                   │ LoRa (SPI)
-                   ▼
-    ┌──────────────────────────────┐
-    │        BitDogLab RX          │
-    │   (Raspberry Pi Pico SDK)    │
-    │  - Recepção via LoRa         │
-    │  - Exibição no terminal      │
-    └──────────────────────────────┘
+```mermaid
+flowchart TD
+  subgraph Sensor [Sensor AHT10]
+    AHT10["AHT10<br>(Temperatura / Umidade)"]
+  end
+
+  AHT10 -->|I²C<br>SCL=U17 SDA=U18 (3.3V)| FPGA[/"FPGA — Colorlight i9 (LiteX)"/]
+
+  subgraph FPGA_box [FPGA — Colorlight i9 (LiteX)]
+    direction TB
+    subgraph Interno [" "]
+      SPI_blk["Controlador LoRa TX<br>SPIMaster (spi)<br>SCK=G20<br>MOSI=L18<br>MISO=M18<br>CS=N17"]
+      I2C_blk["I²C Master (i2c)<br>SCL=U17 SDA=U18"]
+      SOFTCORE["Softcore (firmware C)"]
+    end
+    SPI_blk -->|SPI 1 MHz| LoRa_mod[(Módulo LoRa — RFM9x)]
+    I2C_blk --> AHT10
+    SOFTCORE -->|CSR / comandos| SPI_blk
+  end
+
+  LoRa_mod -->|LoRa (rádio)| BitDog["BitDogLab (Raspberry Pi Pico)"]
+  BitDog -->|UART / Terminal 115200| Host["PC (terminal)"]
+
+  classDef hw fill:#0b2545,stroke:#0b84ff,color:#fff;
+  class Sensor,FPGA_box,LoRa_mod,BitDog hw;
 
 ```
 
